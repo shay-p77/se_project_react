@@ -1,0 +1,37 @@
+.item__card {
+  width: 323px;
+  height: 326px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 34px;
+  position: relative;
+}
+
+.items__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+ }
+
+.item__card-image {
+  border-radius: 10px;
+  cursor: pointer;
+  width: 325px;
+  height: 328px;
+}
+
+.item__card-name {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000;
+  opacity: 60%;
+  position: absolute;
+  right: 125px;
+  left: 126px;
+  background-color: #fff;
+  border-radius: 4px;
+  text-align: center;
+}

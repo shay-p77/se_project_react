@@ -1,0 +1,25 @@
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main app layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f3f3f3;
+}
+
+.main {
+  flex: 1;
+}
+
+.footer {
+  background-color: #f3f3f3;
+  padding: 10px 0;
+  padding: 85px 40px 24px;
+}

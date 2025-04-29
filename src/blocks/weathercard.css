@@ -1,0 +1,68 @@
+/* .weather__card {
+  background-color: #00a3ff;
+  border-radius: 10px;
+  height: 80px;
+  margin-left: 40px;
+  margin-right: 40px;
+} */
+
+.weather__card {
+  position: relative;
+  background-color: #00a3ff;
+  border-radius: 10px;
+  height: 80px;
+  margin: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* .weather__card-temp {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #fff;
+  padding: 20px 0 20px 16px;
+} */
+
+.weather__card-temp {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #fff;
+  padding-left: 16px;
+  z-index: 1;
+}
+
+.weather__card-icons {
+  position: relative;
+  width: 170px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
+.weather__card-cloud {
+  position: relative;
+  width: 167px;
+  height: 98px;
+  z-index: 1;
+  object-fit: contain;
+  top: 20px;
+  left: 15px;
+}
+
+.weather__card-sun {
+  position: absolute;
+   bottom: 20px;
+left: 130px;
+  width: 60px;
+  height: 60px;
+  z-index: 0;
+  object-fit: contain;
+}

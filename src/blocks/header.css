@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 40px;
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__logo {
+  width: 89px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+.header__date-location {
+  display: flex;
+  align-items: center;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  padding-left: 24px;
+  padding-top: 4px;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__add-button {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.header__name {
+  display: flex;
+  align-items: center;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
