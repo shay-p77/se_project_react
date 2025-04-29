@@ -75,13 +75,13 @@ function App() {
       )}
 
       <Main
-      className="main"
+        className="main"
         weatherData={weatherData}
         clothingItems={clothingItems}
         onCardClick={handleCardClick}
       />
 
-      <Footer className="footer"/>
+      <Footer className="footer" />
     </div>
   );
 }

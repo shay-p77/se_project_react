@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import "../blocks/itemmodal.css";  
- 
+import "../blocks/itemmodal.css";
 
 function ItemModal({ item, onClose }) {
   useEffect(() => {
@@ -21,7 +20,7 @@ function ItemModal({ item, onClose }) {
     }
   };
 
-  if (!item) return null;  
+  if (!item) return null;
 
   return (
     <div className="item__modal" onClick={handleClickOutside}>
@@ -29,11 +28,7 @@ function ItemModal({ item, onClose }) {
         <button className="item__modal-close_button" onClick={onClose}>
           &times;
         </button>
-        <img
-          src={item.link}
-          alt={item.name}
-          className="item__modal-image"
-        />
+        <img src={item.link} alt={item.name} className="item__modal-image" />
         <p className="item__modal-name">{item.name}</p>
         <p className="item__modal-weather_type">Weather: {item.weather}</p>
       </div>

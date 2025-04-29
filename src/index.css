@@ -1,6 +1,6 @@
  
  
- @import url(../blocks/header.css);
+ @import url(./blocks/header.css);
  @font-face {
     font-family: "Cabinet Grotesk";
     src: url('../vendor/CabinetGrotesk-Regular.otf');
