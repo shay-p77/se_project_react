@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import ModalWithForm from "./ModalWithForm";
-import ItemModal from "./ItemModal";
+ import ItemModal from "./ItemModal";
 import "../blocks/app.css";
 import { getWeatherData } from "../utils/weatherApi";
 import { defaultClothingItems } from "../utils/constants";
-
+import AddGarmentModal from "./AddGarmentModal";
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [selectedCard, setSelectedCard] = useState(null); // Track which card was clicked
-  const [isModalOpen, setIsModalOpen] = useState(false); // For ItemModal
+  const [isItemModalOpen, setIsItemModalOpen] = useState(false); // For ItemModal
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false); // For Add Item Form Modal
 
   // Open Add Item modal
@@ -35,7 +34,7 @@ function App() {
   // Open ItemModal when a card is clicked
   const handleCardClick = (card) => {
     setSelectedCard(card); // Set the selected card
-    setIsModalOpen(true); // Open the ItemModal
+    setIsItemModalOpen(true); // Open the ItemModal
   };
 
   useEffect(() => {
@@ -44,7 +43,14 @@ function App() {
         const { latitude, longitude } = position.coords;
         getWeatherData(latitude, longitude)
           .then((data) => {
-            setWeatherData(data);
+            const weatherType = data.weatherType;
+            const isDay = data.isDay; // boolean true/false
+
+            setWeatherData({
+              ...data,
+              weatherType,
+              isDay,
+            });
           })
           .catch((err) => console.error(err));
       });
@@ -56,23 +62,19 @@ function App() {
       <Header openModalWithForm={handleOpenAddItemModal} />
 
       {/* render ItemModal for the selected card */}
-      {isModalOpen && selectedCard && (
+      {isItemModalOpen && selectedCard && (
         <ItemModal
           item={selectedCard}
-          onClose={() => setIsModalOpen(false)} // Close ItemModal
+          onClose={() => setIsItemModalOpen(false)} // Close ItemModal
         />
       )}
 
-      {/* Render Add Item modal */}
-      {isAddItemModalOpen && (
-        <ModalWithForm
-          title="Add New Item"
-          name="add-item-form"
-          buttonText="Save"
-          onClose={handleCloseAddItemModal}
-          onAddItem={handleAddItem}
-        />
-      )}
+      <AddGarmentModal
+        isOpen={isAddItemModalOpen}
+        onClose={handleCloseAddItemModal}
+        onAddItem={handleAddItem}
+        
+      />
 
       <Main
         className="main"

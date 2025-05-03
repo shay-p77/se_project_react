@@ -3,6 +3,7 @@
  @import url(./blocks/header.css);
  @font-face {
     font-family: "Cabinet Grotesk";
-    src: url('../vendor/CabinetGrotesk-Regular.otf');
+    src: url('../src/vendor/CabinetGrotesk-Regular.woff2') format(woff2);
+    src: url('../src/vendor/CabinetGrotesk-Regular.woff') format(woff);
  }
  @import url(../blocks/weathercard.css);

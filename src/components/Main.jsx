@@ -21,6 +21,8 @@ function Main({ weatherData, clothingItems, onCardClick }) {
         <WeatherCard
           temperature={weatherData.temperature}
           city={weatherData.city}
+          weatherType={weatherData.weatherType}
+          isDay={weatherData.isDay}
         />
       )}
 

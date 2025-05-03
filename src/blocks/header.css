@@ -42,6 +42,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
+  font-family: "Cabinet Grotesk", sans-serif;
 }
 
 .header__name {
