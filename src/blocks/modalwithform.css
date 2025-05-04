@@ -102,12 +102,12 @@
   cursor: pointer;
 }
 
- .form__modal-radio_label span {
+.form__modal-radio_label span {
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
 
- .modal__radio-input:checked + span {
+.modal__radio-input:checked + span {
   opacity: 1;
 }
 

@@ -1,6 +1,5 @@
- import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "./ModalWithForm";
-import "../blocks/modalwithform.css";
 
 function AddGarmentModal({ isOpen, onClose, onAddItem }) {
   const [itemName, setItemName] = useState("");
@@ -33,7 +32,6 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
 
   const handleRadioChange = (e) => {
     setWeatherType(e.target.value);
-
     if (!e.target.value) {
       setErrors((prev) => ({ ...prev, weather: "Please select a weather type." }));
     } else {
@@ -55,16 +53,16 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
   return (
     <ModalWithForm
       name="add-garment"
-      title="New Garment"
       onClose={onClose}
       onSubmit={handleSubmit}
+      title="New Garment"
       buttonText="Add Garment"
       isValid={isValid}
-      isOpen={isOpen}
     >
-      <label className="form__modal-input_title">
+      <label className="form__modal-input_title" htmlFor="item-name">
         Name*
         <input
+          id="item-name"
           className={`form__modal-input ${errors.itemName ? "form__modal-input_error" : ""}`}
           placeholder="Name"
           name="itemName"
@@ -77,9 +75,10 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
         <span className="form__modal-error">{errors.itemName}</span>
       </label>
 
-      <label className="form__modal-input_title">
+      <label className="form__modal-input_title" htmlFor="item-image">
         Image*
         <input
+          id="item-image"
           className={`form__modal-input ${errors.itemImage ? "form__modal-input_error" : ""}`}
           placeholder="Image URL"
           type="url"
@@ -91,26 +90,46 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
         <span className="form__modal-error">{errors.itemImage}</span>
       </label>
 
-      <label className="form__modal-weather_type">
-        Select the weather type*:
-        <div className="form__modal-radio_group">
-          {["hot", "warm", "cold"].map((type) => (
-            <label key={type} className="form__modal-radio_label">
+      <p className="form__modal-weather_type">Select the weather type*:</p>
+          <div className="form__modal-radio_group">
+            <label className="form__modal-radio_label">
               <input
                 type="radio"
                 name="weather"
-                value={type}
-                checked={weatherType === type}
+                value="hot"
+                checked={weatherType === "hot"}
                 onChange={handleRadioChange}
                 className="modal__radio-input"
                 required
               />
-              <span>{type.charAt(0).toUpperCase() + type.slice(1)}</span>
+              <span>Hot</span>
             </label>
-          ))}
-        </div>
-        <span className="form__modal-error">{errors.weather}</span>
-      </label>
+            <label className="form__modal-radio_label">
+              <input
+                type="radio"
+                name="weather"
+                value="warm"
+                checked={weatherType === "warm"}
+                onChange={handleRadioChange}
+                className="modal__radio-input"
+                required
+              />
+              <span>Warm</span>
+            </label>
+            <label className="form__modal-radio_label">
+              <input
+                type="radio"
+                name="weather"
+                value="cold"
+                checked={weatherType === "cold"}
+                onChange={handleRadioChange}
+                className="modal__radio-input"
+                required
+              />
+              <span>Cold</span>
+            </label>
+          </div>
+          <span className="form__modal-error">{errors.weather}</span>
     </ModalWithForm>
   );
 }

@@ -1,47 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo from "../assets/wtwr.svg";
 import avatar from "../assets/avatar.png";
- 
 
-function Header({ openModalWithForm }) {
-  const [location, setLocation] = useState("Loading...");
+function Header({ openModalWithForm, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          try {
-            const response = await fetch(
-              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
-            );
-            const data = await response.json();
-            console.log(data);
-            if (data.city) {
-              setLocation(data.city);
-            } else if (data.locality) {
-              setLocation(data.locality);
-            } else {
-              setLocation("Unknown Location");
-            }
-          } catch (error) {
-            console.error("Error fetching location:", error);
-            setLocation("Location unavailable");
-          }
-        },
-        (error) => {
-          console.error(error);
-          setLocation("Location unavailable");
-        }
-      );
-    } else {
-      setLocation("Geolocation not supported");
-    }
-  }, []);
+  const location = weatherData?.city || "Loading...";
 
   return (
     <header className="header">
