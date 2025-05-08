@@ -1,9 +1,7 @@
- 
- 
- @import url(./blocks/header.css);
- @font-face {
-    font-family: "Cabinet Grotesk";
-    src: url('../src/vendor/CabinetGrotesk-Regular.woff2') format(woff2);
-    src: url('../src/vendor/CabinetGrotesk-Regular.woff') format(woff);
- }
- @import url(../blocks/weathercard.css);
+@import url(./blocks/header.css);
+@import url(./blocks/weathercard.css);
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../src/vendor/CabinetGrotesk-Regular.woff2") format(woff2);
+  src: url("../src/vendor/CabinetGrotesk-Regular.woff") format(woff);
+}

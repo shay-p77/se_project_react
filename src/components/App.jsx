@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -34,16 +34,28 @@ function App() {
   };
 
   useEffect(() => {
+    const defaultCoords = { latitude: 40.7128, longitude: -74.006 }; // NYC
+  
+    function fetchWeather(coords) {
+      getWeatherData(coords.latitude, coords.longitude)
+        .then((data) => setWeatherData(data))
+        .catch((err) => console.error("Error fetching weather data:", err));
+    }
+  
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        getWeatherData(latitude, longitude)
-          .then((data) => {
-            console.log("Fetched Weather Data:", data);
-            setWeatherData(data);
-          })
-          .catch((err) => console.error("Error fetching weather data:", err));
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          fetchWeather(position.coords);
+        },
+        (error) => {
+          console.warn("Geolocation denied or failed, using default coords.", error);
+          fetchWeather(defaultCoords);
+        },
+        { timeout: 10000 }
+      );
+    } else {
+      console.warn("Geolocation not supported, using default coords.");
+      fetchWeather(defaultCoords);
     }
   }, []);
 
