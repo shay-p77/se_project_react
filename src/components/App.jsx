@@ -4,7 +4,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import ItemModal from "./ItemModal";
-import AddGarmentModal from "./AddGarmentModal";
+import AddItemModal from "./AddItemModal";
 import "../blocks/app.css";
 import { getWeatherData } from "../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
@@ -124,7 +124,7 @@ function App() {
           )}
 
           {isAddItemModalOpen && (
-            <AddGarmentModal
+            <AddItemModal
               isOpen={isAddItemModalOpen}
               onClose={handleCloseAddItemModal}
               onAddItem={handleAddItem}

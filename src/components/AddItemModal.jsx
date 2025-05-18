@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ModalWithForm from "./ModalWithForm";
 
-function AddGarmentModal({ isOpen, onClose, onAddItem }) {
+function AddItemModal({ isOpen, onClose, onAddItem }) {
   const [itemName, setItemName] = useState("");
   const [itemImage, setItemImage] = useState("");
   const [weatherType, setWeatherType] = useState("");
@@ -141,4 +141,4 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
   );
 }
 
-export default AddGarmentModal;
+export default AddItemModal;
