@@ -22,6 +22,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [cardToDelete, setCardToDelete] = useState(null);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
@@ -38,11 +39,6 @@ function App() {
   const handleCloseAddItemModal = () => {
     setIsAddItemModalOpen(false);
   };
-
-  // const handleAddItem = (newItem) => {
-  //   const itemWithId = { ...newItem, _id: Date.now().toString() };
-  //   setClothingItems([itemWithId, ...clothingItems]);
-  // };
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
@@ -81,13 +77,18 @@ function App() {
   useEffect(() => {
     getItems()
       .then((itemsFromServer) => setClothingItems(itemsFromServer))
-      .catch((err) => console.error(err));
+      .catch(console.error);
   }, []);
 
   function handleAddItem(newItemData) {
+    setIsLoading(true);
     addItem(newItemData)
-      .then((addedItem) => setClothingItems((prev) => [addedItem, ...prev]))
-      .catch((err) => console.error(err));
+      .then((addedItem) => {
+        setClothingItems((prev) => [addedItem, ...prev]);
+        setIsAddItemModalOpen(false);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }
 
   function handleDeleteItem(id) {
@@ -95,7 +96,7 @@ function App() {
       .then(() =>
         setClothingItems((prev) => prev.filter((item) => item._id !== id))
       )
-      .catch((err) => console.error(err));
+      .catch(console.error);
   }
 
   return (
@@ -128,6 +129,7 @@ function App() {
               isOpen={isAddItemModalOpen}
               onClose={handleCloseAddItemModal}
               onAddItem={handleAddItem}
+              isLoading={isLoading}
             />
           )}
 

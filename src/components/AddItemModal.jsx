@@ -50,7 +50,6 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
     if (!isValid) return;
 
     onAddItem({ name: itemName, link: itemImage, weather: weatherType });
-    onClose();
   };
 
   return (

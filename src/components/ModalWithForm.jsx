@@ -9,6 +9,7 @@ function ModalWithForm({
   buttonText,
   children,
   isValid,
+  isLoading,
 }) {
   useEffect(() => {
     const handleEscape = (event) => {
@@ -47,7 +48,7 @@ function ModalWithForm({
             }`}
             disabled={!isValid}
           >
-            {buttonText}
+            {isLoading ? "Saving..." : buttonText}
           </button>
         </form>
       </div>
