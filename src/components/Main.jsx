@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import "../blocks/main.css";
 
-function Main({ weatherData, clothingItems, onCardClick }) {
-  // Define temperature category
-  const temperature = weatherData?.temperature;
-  const weatherType =
-    temperature >= 86 ? "hot" : temperature >= 66 ? "warm" : "cold";
+function Main({ weatherData, clothingItems, onCardClick, weatherType }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
-  // Filter clothing items based on weatherType
+  const temperature = weatherData?.temperature;
+
   const filteredItems = clothingItems?.filter(
     (item) => item.weather === weatherType
   );
 
   return (
     <main className="main">
-      {/* Weather card */}
       {weatherData && (
         <WeatherCard
           temperature={weatherData.temperature}
@@ -27,10 +25,10 @@ function Main({ weatherData, clothingItems, onCardClick }) {
       )}
 
       <p className="main__text">
-        Today is {temperature}°F / You may want to wear:
+        Today is {temperature?.[currentTemperatureUnit]}°
+        {currentTemperatureUnit} / You may want to wear:
       </p>
 
-      {/* Clothing items list */}
       <ul className="items__list">
         {filteredItems &&
           filteredItems.map((item) => (

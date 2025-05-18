@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../blocks/itemmodal.css";
 
-function ItemModal({ item, onClose }) {
+function ItemModal({ item, onClose, onOpenConfirmModal }) {
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -29,7 +29,15 @@ function ItemModal({ item, onClose }) {
           &times;
         </button>
         <img src={item.link} alt={item.name} className="item__modal-image" />
-        <p className="item__modal-name">{item.name}</p>
+        <div className="item__modal-header">
+          <p className="item__modal-name">{item.name}</p>
+          <button
+            className="item__modal-delete_button"
+            onClick={() => onOpenConfirmModal(item)}
+          >
+            Delete item
+          </button>
+        </div>
         <p className="item__modal-weather_type">Weather: {item.weather}</p>
       </div>
     </div>

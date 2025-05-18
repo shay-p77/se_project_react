@@ -33,7 +33,10 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
   const handleRadioChange = (e) => {
     setWeatherType(e.target.value);
     if (!e.target.value) {
-      setErrors((prev) => ({ ...prev, weather: "Please select a weather type." }));
+      setErrors((prev) => ({
+        ...prev,
+        weather: "Please select a weather type.",
+      }));
     } else {
       setErrors((prev) => ({ ...prev, weather: "" }));
     }
@@ -63,7 +66,9 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
         Name*
         <input
           id="item-name"
-          className={`form__modal-input ${errors.itemName ? "form__modal-input_error" : ""}`}
+          className={`form__modal-input ${
+            errors.itemName ? "form__modal-input_error" : ""
+          }`}
           placeholder="Name"
           name="itemName"
           value={itemName}
@@ -79,7 +84,9 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
         Image*
         <input
           id="item-image"
-          className={`form__modal-input ${errors.itemImage ? "form__modal-input_error" : ""}`}
+          className={`form__modal-input ${
+            errors.itemImage ? "form__modal-input_error" : ""
+          }`}
           placeholder="Image URL"
           type="url"
           name="itemImage"
@@ -91,45 +98,45 @@ function AddGarmentModal({ isOpen, onClose, onAddItem }) {
       </label>
 
       <p className="form__modal-weather_type">Select the weather type*:</p>
-          <div className="form__modal-radio_group">
-            <label className="form__modal-radio_label">
-              <input
-                type="radio"
-                name="weather"
-                value="hot"
-                checked={weatherType === "hot"}
-                onChange={handleRadioChange}
-                className="modal__radio-input"
-                required
-              />
-              <span>Hot</span>
-            </label>
-            <label className="form__modal-radio_label">
-              <input
-                type="radio"
-                name="weather"
-                value="warm"
-                checked={weatherType === "warm"}
-                onChange={handleRadioChange}
-                className="modal__radio-input"
-                required
-              />
-              <span>Warm</span>
-            </label>
-            <label className="form__modal-radio_label">
-              <input
-                type="radio"
-                name="weather"
-                value="cold"
-                checked={weatherType === "cold"}
-                onChange={handleRadioChange}
-                className="modal__radio-input"
-                required
-              />
-              <span>Cold</span>
-            </label>
-          </div>
-          <span className="form__modal-error">{errors.weather}</span>
+      <div className="form__modal-radio_group">
+        <label className="form__modal-radio_label">
+          <input
+            type="radio"
+            name="weather"
+            value="hot"
+            checked={weatherType === "hot"}
+            onChange={handleRadioChange}
+            className="modal__radio-input"
+            required
+          />
+          <span>Hot</span>
+        </label>
+        <label className="form__modal-radio_label">
+          <input
+            type="radio"
+            name="weather"
+            value="warm"
+            checked={weatherType === "warm"}
+            onChange={handleRadioChange}
+            className="modal__radio-input"
+            required
+          />
+          <span>Warm</span>
+        </label>
+        <label className="form__modal-radio_label">
+          <input
+            type="radio"
+            name="weather"
+            value="cold"
+            checked={weatherType === "cold"}
+            onChange={handleRadioChange}
+            className="modal__radio-input"
+            required
+          />
+          <span>Cold</span>
+        </label>
+      </div>
+      <span className="form__modal-error">{errors.weather}</span>
     </ModalWithForm>
   );
 }

@@ -1,0 +1,79 @@
+.delete__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.delete__modal-container {
+  width: 500px;
+  height: 250px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  position: relative;
+}
+
+.delete__modal-close_button {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  opacity: 30%;
+}
+
+.delete__modal-message {
+  font-family: "Cabinet grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.delete__modal-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.delete__modal-confirm_button {
+  background: none;
+  color: #ff4d00;
+  border: none;
+  font-family: "Cabinet grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete__modal-confirm_button:hover {
+  opacity: 70%;
+}
+
+.delete__modal-cancel_button {
+  background: none;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-family: "Cabinet grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.delete__modal-cancel_button:hover {
+  opacity: 70%;
+}
