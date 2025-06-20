@@ -1,16 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";  
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/wtwr.svg";
 import avatar from "../assets/avatar.png";
 import ToggleSwitch from "./ToggleSwitch";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function Header({ openModalWithForm, weatherData, isCelsius, onToggleTemp }) {
+function Header({
+  openModalWithForm,
+  weatherData,
+  isCelsius,
+  onToggleTemp,
+  onOpenRegisterModal,
+  onOpenLoginModal,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const location = weatherData?.city || "Loading...";
+
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -25,14 +35,39 @@ function Header({ openModalWithForm, weatherData, isCelsius, onToggleTemp }) {
 
       <div className="header__right">
         <ToggleSwitch isChecked={isCelsius} onToggle={onToggleTemp} />
-        <button className="header__add-button" onClick={openModalWithForm}>
-          + Add Clothes
-        </button>
-
-        <Link to="/profile" className="header__profile-link">
-          <span className="header__name">Terrence Tegegne</span>
-          <img className="header__avatar" src={avatar} alt="User Avatar" />
-        </Link>
+        {currentUser ? (
+          <>
+            <button className="header__add-button" onClick={openModalWithForm}>
+              + Add Clothes
+            </button>
+            <Link to="/profile" className="header__profile-link">
+              <span className="header__name">{currentUser.name}</span>
+              {currentUser.avatar ? (
+                <img
+                  className="header__avatar"
+                  src={currentUser.avatar}
+                  alt="User Avatar"
+                />
+              ) : (
+                <div className="header__avatar header__avatar-placeholder">
+                  {currentUser.name[0]}
+                </div>
+              )}
+            </Link>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={onOpenRegisterModal}
+              className="header__auth-button"
+            >
+              Sign up
+            </button>
+            <button onClick={onOpenLoginModal} className="header__auth-button">
+              Log in
+            </button>
+          </>
+        )}
       </div>
     </header>
   );

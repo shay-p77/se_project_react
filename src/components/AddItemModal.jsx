@@ -60,6 +60,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
       title="New Garment"
       buttonText="Add Garment"
       isValid={isValid}
+      isOpen={isOpen}
     >
       <label className="form__modal-input_title" htmlFor="item-name">
         Name*

@@ -1,18 +1,23 @@
-import React from "react";
-import SideBar from "./SideBar";
-import ClothesSection from "./ClothesSection";
-import "../blocks/profile.css";
+import React, { useContext } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext";
+import EditProfileModal from "./EditProfileModal";
 
-function Profile({ clothingItems, onCardClick, onAddItem }) {
+function Profile({ isEditModalOpen, onCloseEditModal, onUpdateUser }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const handleUpdateUser = ({ name, avatar }) => {
+    return onUpdateUser({ name, avatar });
+  };
+
   return (
-    <div className="profile">
-      <SideBar />
-      <ClothesSection
-        clothingItems={clothingItems}
-        onCardClick={onCardClick}
-        onAddItem={onAddItem}
+    <>
+      <EditProfileModal
+        isOpen={isEditModalOpen}
+        onClose={onCloseEditModal}
+        currentUser={currentUser}
+        onUpdateUser={handleUpdateUser}
       />
-    </div>
+    </>
   );
 }
 

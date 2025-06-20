@@ -10,6 +10,8 @@ function ModalWithForm({
   children,
   isValid,
   isLoading,
+  isOpen,
+  secondaryButton,
 }) {
   useEffect(() => {
     const handleEscape = (event) => {
@@ -28,6 +30,8 @@ function ModalWithForm({
       onClose();
     }
   };
+
+  if (!isOpen) return null;
 
   return (
     <div
@@ -50,6 +54,7 @@ function ModalWithForm({
           >
             {isLoading ? "Saving..." : buttonText}
           </button>
+          {secondaryButton}
         </form>
       </div>
     </div>

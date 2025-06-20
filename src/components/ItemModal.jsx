@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "../blocks/itemmodal.css";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function ItemModal({ item, onClose, onOpenConfirmModal }) {
   useEffect(() => {
@@ -22,6 +23,9 @@ function ItemModal({ item, onClose, onOpenConfirmModal }) {
 
   if (!item) return null;
 
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = item.owner === currentUser?._id;
+
   return (
     <div className="item__modal" onClick={handleClickOutside}>
       <div className="item__modal-container">
@@ -31,12 +35,14 @@ function ItemModal({ item, onClose, onOpenConfirmModal }) {
         <img src={item.link} alt={item.name} className="item__modal-image" />
         <div className="item__modal-header">
           <p className="item__modal-name">{item.name}</p>
-          <button
-            className="item__modal-delete_button"
-            onClick={() => onOpenConfirmModal(item)}
-          >
-            Delete item
-          </button>
+          {isOwn && (
+            <button
+              className="item__modal-delete_button"
+              onClick={() => onOpenConfirmModal(item)}
+            >
+              Delete item
+            </button>
+          )}
         </div>
         <p className="item__modal-weather_type">Weather: {item.weather}</p>
       </div>

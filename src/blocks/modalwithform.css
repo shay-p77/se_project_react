@@ -20,6 +20,18 @@
   position: relative;
 }
 
+.modal_type_register .form__modal-container {
+  width: 450px;
+  height: 400px;
+}
+
+.modal_type_login .form__modal-container {
+  width: 450px;
+  height: 250px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
 .form__modal-close_button {
   width: 20px;
   height: 20px;
@@ -33,6 +45,18 @@
   opacity: 30%;
 }
 
+.modal_type_login .form__modal-close_button {
+  margin-right: 25px;
+}
+
+.modal_type_register .form__modal-close_button {
+  margin-right: 20px;
+}
+
+.modal_type_editprofile .form__modal-close_button {
+  margin-right: 20px;
+}
+
 .form__modal-title {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
@@ -42,7 +66,31 @@
   font-size: 24px;
 }
 
+.modal_type_login .form__modal-title {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+}
+
+.modal_type_register .form__modal-title {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.modal_type_editprofile .form__modal-title {
+  font-size: 16px;
+}
+
 .form__modal-input_title {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.modal_type_login .form__modal-input_title {
   font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 16px;
@@ -73,6 +121,18 @@
   font-size: 16px;
   cursor: pointer;
   margin-top: 32px;
+}
+
+.modal_type_login .form__modal-submit_button {
+  width: 73px;
+  height: 36px;
+  margin-top: 20px;
+}
+
+.modal_type_register .form__modal-submit_button {
+  width: 86px;
+  height: 36px;
+  margin-top: 10px;
 }
 
 .form__modal-submit_button:hover {
@@ -115,12 +175,35 @@
   border: 1px solid red;
 }
 
+.modal_type_login .form__modal-input_error {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.modal_type_register .form__modal-input_error {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
 .form__modal-error {
   color: red;
   font-size: 14px;
   margin-bottom: 10px;
   display: block;
   font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.modal_type_login .form__modal-error {
+  margin-top: 5px;
+}
+
+.modal_type_register .form__modal-error {
+  margin-top: 5px;
+  display: none;
+}
+
+.modal_type_register .form__modal-error:not(:empty) {
+  display: block; /* show when there's an error */
 }
 
 .form__modal-submit_button_disabled {
