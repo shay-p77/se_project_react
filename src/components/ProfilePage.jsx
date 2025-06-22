@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SideBar from "./SideBar";
 import Profile from "./Profile";
 import ClothesSection from "./ClothesSection";
-import "../blocks/profilePage.css";
+import "../blocks/profilepage.css";
 
 function ProfilePage({
   onSignOut,

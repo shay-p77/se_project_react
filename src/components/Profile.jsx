@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import EditProfileModal from "./EditProfileModal";
+import "../blocks/profile.css";
 
 function Profile({ isEditModalOpen, onCloseEditModal, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext);
