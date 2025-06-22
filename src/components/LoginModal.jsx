@@ -2,7 +2,15 @@ import ModalWithForm from "./ModalWithForm";
 import { useState, useEffect } from "react";
 import "../blocks/loginmodal.css";
 
-function LoginModal({ isOpen, onClose, onLogin, isLoading, onOpenRegister }) {
+function LoginModal({
+  isOpen,
+  onClose,
+  onLogin,
+  isLoading,
+  onOpenRegister,
+  errorMessage,
+  onClearError,
+}) {
   const [form, setForm] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
@@ -24,12 +32,13 @@ function LoginModal({ isOpen, onClose, onLogin, isLoading, onOpenRegister }) {
     onLogin(form);
   };
 
-  // Reset form and errors when modal opens
+  // reset form and errors when modal opens
   useEffect(() => {
     if (isOpen) {
       setForm({ email: "", password: "" });
       setErrors({});
       setIsValid(false);
+      onClearError?.(); //  clears the error message
     }
   }, [isOpen]);
 
@@ -85,6 +94,11 @@ function LoginModal({ isOpen, onClose, onLogin, isLoading, onOpenRegister }) {
         />
         <span className="form__modal-error">{errors.password}</span>
       </label>
+      {errorMessage && (
+        <p className="form__modal-error login__modal-error_general">
+          {errorMessage}
+        </p>
+      )}
     </ModalWithForm>
   );
 }

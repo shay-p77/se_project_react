@@ -49,7 +49,7 @@ function AddItemModal({ isOpen, onClose, onAddItem }) {
     e.preventDefault();
     if (!isValid) return;
 
-    onAddItem({ name: itemName, link: itemImage, weather: weatherType });
+    onAddItem({ name: itemName, imageUrl: itemImage, weather: weatherType });
   };
 
   return (

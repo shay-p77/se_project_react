@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function ItemCard({ item, onClick, onCardLike }) {
+function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   const isLiked = currentUser
@@ -9,8 +9,8 @@ function ItemCard({ item, onClick, onCardLike }) {
     : false;
 
   const handleLike = () => {
-    if (!currentUser) return; // Don't allow if not logged in
-    onCardLike({ id: item._id, isLiked });
+    if (!currentUser) return; // don't allow if not logged in
+    onCardLike({ id: item._id, isLiked: isLiked });
   };
 
   const likeButtonClassName = `like-button ${
@@ -18,16 +18,22 @@ function ItemCard({ item, onClick, onCardLike }) {
   }`;
 
   return (
-    <div className="item-card">
-      <button
-        className={likeButtonClassName}
-        onClick={handleLike}
-        aria-label="Like button"
-        style={{ display: currentUser ? "inline-block" : "none" }}
-      >
-        ❤️
-      </button>
-      <div>{item.likes.length}</div>
+    <div className="item__card">
+      <li className="items__list">
+        <img
+          src={item.imageUrl}
+          alt={item.name}
+          onClick={() => onCardClick(item)}
+          className="item__card-image"
+        />
+        <p className="item__card-name">{item.name}</p>{" "}
+        <button
+          className={`item__like-button ${
+            isLiked ? "item__like-button_is-active" : ""
+          }`}
+          onClick={handleLike}
+        />
+      </li>
     </div>
   );
 }

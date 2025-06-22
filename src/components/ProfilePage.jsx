@@ -1,4 +1,3 @@
-// ProfilePage.jsx
 import React, { useState } from "react";
 import SideBar from "./SideBar";
 import Profile from "./Profile";
@@ -12,6 +11,7 @@ function ProfilePage({
   onCardClick,
   onAddItem,
   onEditProfile,
+  onCardLike,
 }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -31,6 +31,7 @@ function ProfilePage({
           clothingItems={clothingItems}
           onCardClick={onCardClick}
           onAddItem={onAddItem}
+          onCardLike={onCardLike}
         />
       </div>
     </div>

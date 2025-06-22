@@ -19,14 +19,14 @@ export function getItems(token) {
   });
 }
 
-export function addItem({ name, link, weather }) {
+export function addItem({ name, imageUrl, weather }) {
   return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-    body: JSON.stringify({ name, link, weather }),
+    body: JSON.stringify({ name, imageUrl, weather }),
   });
 }
 
@@ -38,7 +38,6 @@ export function deleteItem(id) {
     },
   });
 }
-
 
 export function updateUserProfile({ name, avatar }) {
   return fetch(`${baseUrl}/users/me`, {

@@ -58,7 +58,7 @@
 }
 
 .item__modal-delete_button {
-  color: #ff4d00;
+  color: red;
   border: none;
   cursor: pointer;
   font-family: "Cabinet grotesk", sans-serif;

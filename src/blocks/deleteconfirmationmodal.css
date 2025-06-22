@@ -49,7 +49,7 @@
 
 .delete__modal-confirm_button {
   background: none;
-  color: #ff4d00;
+  color: red;
   border: none;
   font-family: "Cabinet grotesk", sans-serif;
   font-weight: 700;

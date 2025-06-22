@@ -135,6 +135,10 @@
   margin-top: 10px;
 }
 
+.modal_type_editprofile .form__modal-submit_button {
+  width: 128px;
+}
+
 .form__modal-submit_button:hover {
   opacity: 60%;
 }

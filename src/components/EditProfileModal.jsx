@@ -42,7 +42,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      buttonText={isLoading ? "Saving..." : "Save"}
+      buttonText={isLoading ? "Saving..." : "Save Changes"}
       isValid={isValid}
     >
       <label className="form__modal-input_title">

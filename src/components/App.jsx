@@ -45,6 +45,7 @@ function App() {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const handleOpenEditModal = () => setIsEditModalOpen(true);
   const handleCloseEditModal = () => setIsEditModalOpen(false);
+  const [loginErrorMessage, setLoginErrorMessage] = useState("");
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit((prevUnit) => (prevUnit === "F" ? "C" : "F"));
@@ -101,7 +102,9 @@ function App() {
         handleTokenCheck(res.token);
         handleCloseModals();
       })
-      .catch(console.error)
+      .catch(() => {
+        setLoginErrorMessage("Incorrect email or password");
+      })
       .finally(() => setIsAuthLoading(false));
   };
 
@@ -170,13 +173,24 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
+
+    getItems(token)
+      .then((itemsFromServer) => {
+        setClothingItems(itemsFromServer);
+      })
+      .catch((err) => {
+        console.error("Error fetching clothing items:", err);
+      });
+  }, [loggedIn]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
     if (token) {
       handleTokenCheck(token);
     }
   }, []);
 
   const handleTokenCheck = (token) => {
-    console.log("Checking token:", token);
     checkToken(token)
       .then((userData) => {
         setLoggedIn(true);
@@ -272,6 +286,8 @@ function App() {
               onLogin={handleLogin}
               isLoading={isAuthLoading}
               onOpenRegister={handleOpenRegisterModal}
+              errorMessage={loginErrorMessage}
+              onClearError={() => setLoginErrorMessage("")}
             />
             <EditProfileModal
               isOpen={isEditModalOpen}
@@ -286,9 +302,6 @@ function App() {
                   <Main
                     className="main"
                     weatherData={weatherData}
-                    // weatherType={
-                    //   weatherData?.weatherType?.[currentTemperatureUnit]
-                    // }
                     weatherType={weatherData?.weatherType}
                     clothingItems={clothingItems}
                     onCardClick={handleCardClick}
@@ -307,6 +320,7 @@ function App() {
                       onUpdateUser={handleUpdateUser}
                       onSignOut={handleSignOut}
                       onEditProfile={handleOpenEditProfileModal}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

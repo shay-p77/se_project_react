@@ -3,14 +3,21 @@ import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
 import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import "../blocks/main.css";
+import "../blocks/itemcard.css";
 
-function Main({ weatherData, clothingItems, onCardClick, weatherType }) {
+function Main({
+  weatherData,
+  clothingItems,
+  onCardClick,
+  onCardLike,
+  weatherType,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const temperature = weatherData?.temperature;
 
   const filteredItems = clothingItems?.filter(
-    (item) => item.weather === weatherType
+    (item) => item.weather === weatherType?.[currentTemperatureUnit],
   );
 
   return (
@@ -32,7 +39,12 @@ function Main({ weatherData, clothingItems, onCardClick, weatherType }) {
       <ul className="items__list">
         {filteredItems &&
           filteredItems.map((item) => (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+            <ItemCard
+              key={item._id || `${item.name}-${item.weather}`} // fallback key
+              item={item}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+            />
           ))}
       </ul>
     </main>

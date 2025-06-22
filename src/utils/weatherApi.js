@@ -2,7 +2,7 @@ import { API_KEY } from "./constants";
 
 export function getWeatherData(latitude, longitude) {
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${API_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${API_KEY}`,
   )
     .then((res) => {
       if (!res.ok) {
@@ -13,7 +13,7 @@ export function getWeatherData(latitude, longitude) {
     .then((data) => {
       const tempF = data.main.temp;
       const tempC = ((tempF - 32) * 5) / 9;
-    
+
       return {
         temperature: {
           F: Math.round(tempF),

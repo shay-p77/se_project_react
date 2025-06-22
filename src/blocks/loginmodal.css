@@ -10,7 +10,7 @@
   font-size: 16px;
   line-height: 20px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 16px;
   border: 0;
   border-bottom: 1px solid #000;
@@ -25,4 +25,10 @@
   opacity: 50%;
   cursor: pointer;
   margin-left: 10px;
+}
+
+.login__modal-error_general {
+  color: red;
+  font-size: 146x;
+  font-weight: 700;
 }

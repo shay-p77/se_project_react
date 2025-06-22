@@ -24,7 +24,8 @@ function ItemModal({ item, onClose, onOpenConfirmModal }) {
   if (!item) return null;
 
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = item.owner === currentUser?._id;
+  // only show delete button if user is logged in AND owns the item
+  const isOwn = currentUser && item.owner && item.owner === currentUser._id;
 
   return (
     <div className="item__modal" onClick={handleClickOutside}>
@@ -32,7 +33,11 @@ function ItemModal({ item, onClose, onOpenConfirmModal }) {
         <button className="item__modal-close_button" onClick={onClose}>
           &times;
         </button>
-        <img src={item.link} alt={item.name} className="item__modal-image" />
+        <img
+          src={item.imageUrl}
+          alt={item.name}
+          className="item__modal-image"
+        />
         <div className="item__modal-header">
           <p className="item__modal-name">{item.name}</p>
           {isOwn && (
