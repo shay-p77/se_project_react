@@ -37,6 +37,7 @@
   font-weight: 700;
   background-color: #f3f3f3;
   align-self: flex-start;
+  cursor: pointer;
 }
 
 .sidebar__logout-button {
@@ -46,4 +47,5 @@
   font-weight: 700;
   background-color: #f3f3f3;
   align-self: flex-start;
+  cursor: pointer;
 }

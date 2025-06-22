@@ -23,7 +23,6 @@ import LoginModal from "./LoginModal";
 import ProtectedRoute from "./ProtectedRoute";
 import { register, authorize, checkToken } from "../utils/auth";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import ProfilePage from "./ProfilePage";
 import EditProfileModal from "./EditProfileModal";
 
 function App() {
@@ -313,13 +312,12 @@ function App() {
                 path="/profile"
                 element={
                   <ProtectedRoute loggedIn={loggedIn}>
-                    <ProfilePage
+                    <Profile
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
                       onAddItem={handleOpenAddItemModal}
                       onUpdateUser={handleUpdateUser}
                       onSignOut={handleSignOut}
-                      onEditProfile={handleOpenEditProfileModal}
                       onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
