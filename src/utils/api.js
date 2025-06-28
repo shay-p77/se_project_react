@@ -1,4 +1,6 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl = process.env.NODE_ENV === "production"
+  ? "https://api.wtwr.com.jumpingcrab.com"  // Replace with your real deployed backend URL, including https://
+  : "http://localhost:3001";
 
 function checkResponse(res) {
   if (!res.ok) {
@@ -74,13 +76,3 @@ export const removeCardLike = (cardId, token) => {
     },
   }).then(checkResponse);
 };
-
-export function register({ name, avatar, email, password }) {
-  return request(`${baseUrl}/signup`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, avatar, email, password }),
-  });
-}
